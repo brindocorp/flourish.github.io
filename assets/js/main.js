@@ -82,9 +82,9 @@ window.addEventListener('load', () => {
         let image = new Image();
         image.src = '/assets/img/flags/' + countryName + '.gif';
         image.addEventListener('load', (e) => {
-            var dump = context.drawImage(image, 0, 0, 150, 100);
-            let photo = 'http://127.0.0.1:5500/download.png';
-            console.log(photo);
+            context.drawImage(image, 0, 0, 150, 100);
         });
+        let photoUrl = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        console.log(photoUrl);
     });
 });
