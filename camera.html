@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<meta charset="viewport">
+	<title>Flourishing Tree Camera App</title>
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/balloon.css">
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	<link rel="shortcut icon" href="assets/img/favicon.png">
+	<link rel="manifest" href="manifest.json">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="cameraArea">
+			<video id="video" class="video" autoplay></video>
+			<div class="snap">
+				<button class="capture" id="capture"><i class="fa fa-camera"></i></button>
+			</div>
+		</div>
+		<div id="capturedArea">
+			<canvas class="canvas" id="canvas"></canvas>
+			<div class="imageOptions">
+				<div class="fitersOptions">
+					<ul>
+						<li id="camera">
+							<div class="sliderContainer">
+								<input id="brightness" name="brightness" type="range" min="0" max="100" value="0" class="editFilter">
+							</div>
+							<i class="fa fa-sun-o"></i>
+						</li>
+						<li id="check">
+							<i class="fa fa-check"></i>
+						</li>
+						<li id="user">
+							<i class="fa fa-user"></i>
+						</li>
+						<li id="fa-dashboard">
+							<i class="fa fa-dashboard"></i>
+						</li>
+						<li id="edit">
+							<i class="fa fa-edit"></i>
+						</li>
+						<li id="bullhorn">
+							<i class="fa fa-bullhorn"></i>
+						</li>
+					</ul>
+				</div>
+				<div class="decisionOptions">
+					<ul>
+						<li id="retake" data-balloon-pos="up" data-balloon="Retake Photo">
+							<i class="fa fa-times"></i>
+						</li>
+						<li id="continue" data-balloon-pos="up" data-balloon="Use Photo">
+							<i class="fa fa-check"></i>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="continueModal" id="continueModal">
+			<div class="modalArea">
+				<form method="POST" id="pushData">
+					<div class="inputGroup">
+						<select id="country" class="countries">
+							<option value="">Select your Country</option>
+							<option value="Nigeria">Nigeria</option>
+							<option value="Ghana">Ghana</option>
+							<option value="Canada">Canada</option>
+							<option value="China">China</option>
+							<option value="South Africa">SouthAfrica</option>
+						</select>
+					</div>
+					<!-- <div class="inputGroup">
+						<textarea placeholder="Enter Caption...." id="caption"></textarea>
+					</div> -->
+					<div class="inputGroup">
+						<button type="submit" id="push">Push to Screen</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/sectest.js"></script>
+</html>

@@ -10,7 +10,6 @@ window.addEventListener('load', () => {
     canvas.width = video.width;
     canvas.height = video.height;
 
-
     let cameraArea = document.getElementById('cameraArea');
     let capturedArea = document.getElementById('capturedArea');
 
@@ -54,12 +53,38 @@ window.addEventListener('load', () => {
         lists[pos].addEventListener('click', (e) => {
             var id = e.target.getAttribute('id');
             if(id == 'retake') {
-                console.log("Camera will reload");
-            } else if(id == 'continue') {
-                console.log('Comment Boss will popup');
+                window.location.assign('camera.html');
             } else {
                 console.log("Filter for "+id+" will take place");
             }
         });
     }
+
+    let usePhoto = document.querySelector('#continue');
+    usePhoto.addEventListener('click', function(e){
+        e.preventDefault();
+        let continueModal = document.querySelector('#continueModal');
+        if(continueModal.style.display == 'block') {
+            continueModal.style.display = 'none';
+            console.log("Hidden");
+        } else {
+            continueModal.style.display = 'block';
+            console.log("Shown");
+        }
+    });
+
+    let form = document.querySelector('#pushData');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let country = document.querySelector('#country').value;
+        let countryName = country.toLowerCase();
+        let photo = "Photo";
+        let image = new Image();
+        image.src = '/assets/img/flags/' + countryName + '.gif';
+        image.addEventListener('load', (e) => {
+            var dump = context.drawImage(image, 0, 0, 150, 100);
+            let photo = 'http://127.0.0.1:5500/download.png';
+            console.log(photo);
+        });
+    });
 });

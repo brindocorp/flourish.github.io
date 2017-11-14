@@ -1,0 +1,101 @@
+* {
+	box-sizing: border-box
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+    overflow: hidden;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+div#IndexWrapper {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+    position: relative;
+    background: url('../img/background.jpg') no-repeat 0 0;
+    background-size: cover;
+}
+
+div.formContainer {
+    position: absolute;
+    /* background: rgba(0, 0, 0, 0.8); */
+    color: #fff !important;
+    margin: auto;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    /* width: 30%; */
+    padding: 15px;
+    text-align: center;
+    /* border: 1px solid #333; */
+    /* border-radius: 10px; */
+}
+
+div.formContainer img.logo {
+    width: 130px;
+    margin-bottom: 10px;
+}
+
+div.formContainer h1 {
+    font-weight: bold;
+    font-size: 1.7em;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+form {
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+div.inputGroup {
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+div.inputGroup label {
+    display: block;
+    font-weight: bold;
+    font-size: 21px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 15px 17px;
+    margin-top: 2px;
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid #4169E1;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    background: #4169E1;
+    font-weight: bold;
+    transition: background .5s linear;
+}
+
+/* input[type=submit] {
+    background: #4169e1;
+    border: 1px solid #4169e1 !important;
+    color: #fff;
+    font-weight: bold;
+    font-size: 22px;
+} */
+
+button:hover {
+    background: rgb(28, 80, 211);
+    border: 1px solid rgb(28, 80, 211);
+}
