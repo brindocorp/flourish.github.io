@@ -73,49 +73,30 @@ window.addEventListener('load', () => {
         }
     });
 
-    function dataURItoBlob(dataURI, type) {
-        // convert base64 to raw binary data held in a string
-        var byteString = atob(dataURI.split(',')[1]);
-
-        // separate out the mime component
-        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
-
-        // write the bytes of the string to an ArrayBuffer
-        var ab = new ArrayBuffer(byteString.length);
-        var ia = new Uint8Array(ab);
-        for (var i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-        }
-
-        // write the ArrayBuffer to a blob, and you're done
-        var bb = new Blob([ab], { type: type });
-        return bb;
-    }
-
+    function savePhoto(canvas, id) {
+        canvas.toBlob(blob => {
+            var storage = firebase.app().storage().ref();
+            var name = id + "/" + (new Date()).getTime() + ".png";
+            var f = storage.child("drawings/" + name);
+            var task = f.put(blob);
+            task.on('state_changed', function (snapshot) {
+            }, function (error) {
+                console.error("Unable to save image.");
+                console.error(error);
+            }, function () {
+                var url = task.snapshot.downloadURL;
+                console.log("Saved to " + url);
+            });
+        });
+    };
+    
     let form = document.querySelector('#pushData');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         let country = document.querySelector('#country').value;
         let countryFlagUrl = (country+".gif").toLowerCase();
-        let photoURL = canvas.toDataURL("image/png");
-        // let image = new Image();
-        // image.src = '/assets/img/flags/' + countryName + '.gif';
-        // image.addEventListener('load', (e) => {
-        //     context.drawImage(image, 0, 0, 150, 100);
-        //     let photoUrl = canvas.toDataURL("image/png");
-        //     console.log(photoUrl);
-        // });
-        var image = dataURItoBlob(photoURL, 'image/png');
-        console.log(image);
-        // var storageRef = firebase.storage().ref();
-        // var imageRef = storageRef.child('images');
-
-        // storageRef.getDownloadURL().then(function (url) {
-        //     imageRef.child("image").set(url);
-        // });
-
-        // storageRef.putString(photoUrl, 'base64').then(function (snapshot) {
-        //     console.log('Uploaded a base64 string!');
-        // });
+        let photoUrl = canvas.toDataURL("image/png");
+        alert(countryFlagUrl);
+        savePhoto(canvas, 'images');
     });
 });
