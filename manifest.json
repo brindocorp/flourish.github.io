@@ -20,12 +20,5 @@
   ],
   "start_url": "index.html",
   "display": "fullscreen",
-  "orientation": "landscape",
   "background_color": "goldenrod"
-  // "height": 604,
-  // "width": 800,
-  // "minHeight": 302,
-  // "minWidth": 400,
-  // "maxHeight": 800,
-  // "maxWidth": 604
 }
