@@ -18,6 +18,16 @@ window.addEventListener('load', () => {
         console.log("Error occured " + e);
     }
 
+    function modalDisplay(e) {
+        e.preventDefault();
+        let continueModal = document.querySelector('#continueModal');
+        if (continueModal.style.display == 'block') {
+            continueModal.style.display = 'none';
+        } else {
+            continueModal.style.display = 'block';
+        }
+    }
+
     // Put video listeners into place
     if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
@@ -48,30 +58,16 @@ window.addEventListener('load', () => {
         capturedArea.style.display = 'block';
     });
 
-    let lists = document.querySelectorAll('ul li');
-    for(var pos=0; pos<lists.length; pos++) {
-        lists[pos].addEventListener('click', (e) => {
-            var id = e.target.getAttribute('id');
-            if(id == 'retake') {
-                window.location.assign('camera.html');
-            } else {
-                console.log("Filter for "+id+" will take place");
-            }
-        });
-    }
+    // let lists = document.querySelectorAll('ul li');
+    // for(var pos=0; pos<lists.length; pos++) {
+    //     lists[pos].addEventListener('click', (e) => {
+    //         var id = e.target.getAttribute('id');
+    //         console.log(id);
+    //     });
+    // }
 
     let usePhoto = document.querySelector('#continue');
-    usePhoto.addEventListener('click', function(e){
-        e.preventDefault();
-        let continueModal = document.querySelector('#continueModal');
-        if(continueModal.style.display == 'block') {
-            continueModal.style.display = 'none';
-            console.log("Hidden");
-        } else {
-            continueModal.style.display = 'block';
-            console.log("Shown");
-        }
-    });
+    usePhoto.addEventListener('click', modalDisplay);
 
     function savePhoto(canvas, id, country) {
         canvas.toBlob(blob => {
@@ -86,20 +82,18 @@ window.addEventListener('load', () => {
             }, function () {
                 var url = task.snapshot.downloadURL;
                 console.log("Saved to " + url);
-                var newChildRef = f.push();
-                console.log('my new shiny id is ' + newChildRef.key());
-                // now it is appended at the end of data at the server
-                newChildRef.set({ photoName: name, country: country });
-                var userRef = usersRef.push({
-                    photo: name,
-                    photo_url: url,
-                    country: country,
-                });
-                if(userRef) {
-                    console.log("Done");
-                } else {
-                    console.log("Not Done");
-                }
+                // var userRef = storage.push();
+                // console.log('my new shiny id is ' + userRef.key());
+                // var userRef = usersRef.push({
+                //     photo: name,
+                //     photo_url: url,
+                //     country: country,
+                // });
+                // if(userRef) {
+                //     console.log("Done");
+                // } else {
+                //     console.log("Not Done");
+                // }
             });
         });
     };
@@ -113,4 +107,7 @@ window.addEventListener('load', () => {
         alert(countryFlagUrl);
         savePhoto(canvas, 'images', country);
     });
+
+    var closeBtn = document.querySelector('#closeModal');
+    closeBtn.addEventListener('click', modalDisplay);
 });
