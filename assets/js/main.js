@@ -86,6 +86,20 @@ window.addEventListener('load', () => {
             }, function () {
                 var url = task.snapshot.downloadURL;
                 console.log("Saved to " + url);
+                var newChildRef = f.push();
+                console.log('my new shiny id is ' + newChildRef.key());
+                // now it is appended at the end of data at the server
+                newChildRef.set({ photoName: name, country: country });
+                var userRef = usersRef.push({
+                    photo: name,
+                    photo_url: url,
+                    country: country,
+                });
+                if(userRef) {
+                    console.log("Done");
+                } else {
+                    console.log("Not Done");
+                }
             });
         });
     };
