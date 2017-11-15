@@ -87,8 +87,14 @@ window.addEventListener('load', () => {
         //     console.log(photoUrl);
         // });
         alert(countryFlagUrl);
-        imageRef.putString(photoUrl, 'data_url').then(function (snapshot) {
-            console.log('Uploaded a data_url string!');
+        var storageRef = firebase.storage().ref();
+        var imageRef = storageRef.child('images');
+
+        storageRef.getDownloadURL().then(function (url) {
+            imageRef.child("image").set(url);
         });
-    });
+
+        storageRef.putString(photoUrl, 'base64').then(function (snapshot) {
+            console.log('Uploaded a base64 string!');
+        });
 });
