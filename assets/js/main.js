@@ -7,8 +7,10 @@ window.addEventListener('load', () => {
     video.width = window.innerWidth;
     video.height = window.innerHeight;
 
-    // canvas.width = video.width;
-    // canvas.height = video.height;
+    var vid = document.querySelector('video#video.video');
+
+    canvas.width = video.width;
+    canvas.height = video.height;
 
     let cameraArea = document.getElementById('cameraArea');
     let capturedArea = document.getElementById('capturedArea');
@@ -53,7 +55,7 @@ window.addEventListener('load', () => {
 
     captureBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        context.drawImage(video, 0, 0, video.width, video.height);
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
         cameraArea.style.display = 'none';
         capturedArea.style.display = 'block';
     });
@@ -77,7 +79,7 @@ window.addEventListener('load', () => {
                 // var userRef = storage.push();
                 // console.log('my new shiny id is ' + userRef.key());
                 // var userRef = usersRef.push({
-                //     photo: name,
+                //     photo: name, 
                 //     photo_url: url,
                 //     country: country,
                 // });
