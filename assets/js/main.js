@@ -1,4 +1,13 @@
 window.addEventListener('load', () => {
+    // Registering Service worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
+            console.log('ServiceWorker registration successful!');
+        }).catch(function (err) {
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    }
+
     let video = document.getElementById('video');
     let captureBtn = document.getElementById('capture');
     let canvas = document.getElementById('canvas');
@@ -131,7 +140,7 @@ window.addEventListener('load', () => {
                         bar.style.width = percent+"%";
                         continueModal.style.display = 'none';
                         swal("Success", "Photo successfully pushed", "success").then((value) => {
-                            window.location.assign('/');
+                            window.location.assign('/firebase.github.io/');
                         });
                     } else {
                         percent = (start / end) * 100;
@@ -146,12 +155,4 @@ window.addEventListener('load', () => {
 
     var closeBtn = document.querySelector('#closeModal');
     closeBtn.addEventListener('click', modalDisplay);
-
-    var swalBtn = document.querySelector('.swal-button--confirm');
-    if(swalBtn) {
-        swalBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            alert("Good");
-        });
-    }
 });

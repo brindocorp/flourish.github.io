@@ -1,40 +1,10 @@
-// let form = document.querySelector('form');
-
-// form.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     let name = document.querySelector('input#name');
-//     let email = document.querySelector('input#email');
-//     let password = document.querySelector('input#password');
-//     var error = false;
-//     var errorMsg = [];
-//     if(name.value.length <= 0) {
-//         error = true;
-//         errorMsg[0] = "Please Enter your fullname";
-//     }
-    
-//     if(email.value.length <= 0) {
-//         error = true;
-//         errorMsg[1] = "Please enter a valid email";
-//     }
-
-//     if(password.value.length <= 0) {
-//         error = true;
-//         errorMsg[2] = "Please enter password";
-//     }
-
-//     if(password.value != "Pastor") {
-//         error = true;
-//         errorMsg[3] = "Enter a Valid Password";
-//     }
-//     console.log(password.value);
-
-//     if(error == true) {
-//         alert("Error");
-//         console.log(errorMsg);
-//     } else {
-//         -
-//     }
-// });
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
+        console.log('ServiceWorker registration successful!');
+    }).catch(function (err) {
+        console.log('ServiceWorker registration failed: ', err);
+    });
+}
 
 let takePicture = document.querySelector('#takePicture');
 let countryModal = document.querySelector('#countryModal');
