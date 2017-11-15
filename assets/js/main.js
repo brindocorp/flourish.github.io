@@ -3,6 +3,8 @@ window.addEventListener('load', () => {
     let captureBtn = document.getElementById('capture');
     let canvas = document.getElementById('canvas');
     let context = canvas.getContext('2d');
+
+    let retake  = document.querySelector('#retake');
     
     video.width = window.innerWidth;
     video.height = window.innerHeight;
@@ -52,6 +54,10 @@ window.addEventListener('load', () => {
             video.play();
         }, errBack);
     }
+
+    retake.addEventListener('click', (e) => {
+        location.reload();
+    });
 
     captureBtn.addEventListener('click', function(e) {
         e.preventDefault();
