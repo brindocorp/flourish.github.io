@@ -11,6 +11,7 @@
 	<link rel="manifest" href="manifest.json">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -26,25 +27,7 @@
 				<div class="fitersOptions">
 					<ul>
 						<li id="camera">
-							<div class="sliderContainer">
-								<input id="brightness" name="brightness" type="range" min="0" max="100" value="0" class="editFilter">
-							</div>
-							<i class="fa fa-sun-o"></i>
-						</li>
-						<li id="check">
-							<i class="fa fa-check"></i>
-						</li>
-						<li id="user">
-							<i class="fa fa-user"></i>
-						</li>
-						<li id="fa-dashboard">
-							<i class="fa fa-dashboard"></i>
-						</li>
-						<li id="edit">
-							<i class="fa fa-edit"></i>
-						</li>
-						<li id="bullhorn">
-							<i class="fa fa-bullhorn"></i>
+							<i class="fa fa-share"></i>
 						</li>
 					</ul>
 				</div>
@@ -85,5 +68,6 @@
 	</div>
 </body>
 	<script src="assets/js/main.js"></script>
+	<script src="assets/js/firebaseApp.js"></script>
 	<script src="assets/js/sectest.js"></script>
 </html>

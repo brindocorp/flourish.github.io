@@ -77,14 +77,18 @@ window.addEventListener('load', () => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         let country = document.querySelector('#country').value;
-        let countryName = country.toLowerCase();
-        let photo = "Photo";
-        let image = new Image();
-        image.src = '/assets/img/flags/' + countryName + '.gif';
-        image.addEventListener('load', (e) => {
-            context.drawImage(image, 0, 0, 150, 100);
+        let countryFlagUrl = (country+".gif").toLowerCase();
+        let photoUrl = canvas.toDataURL("image/png");
+        // let image = new Image();
+        // image.src = '/assets/img/flags/' + countryName + '.gif';
+        // image.addEventListener('load', (e) => {
+        //     context.drawImage(image, 0, 0, 150, 100);
+        //     let photoUrl = canvas.toDataURL("image/png");
+        //     console.log(photoUrl);
+        // });
+        imageRef.putString(photoUrl, 'data_url').then(function (snapshot) {
+            console.log('Uploaded a data_url string!');
         });
-        let photoUrl = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        console.log(photoUrl);
+        alert(countryFlagUrl);
     });
 });
