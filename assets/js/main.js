@@ -86,9 +86,9 @@ window.addEventListener('load', () => {
         //     let photoUrl = canvas.toDataURL("image/png");
         //     console.log(photoUrl);
         // });
+        alert(countryFlagUrl);
         imageRef.putString(photoUrl, 'data_url').then(function (snapshot) {
             console.log('Uploaded a data_url string!');
         });
-        alert(countryFlagUrl);
     });
 });
