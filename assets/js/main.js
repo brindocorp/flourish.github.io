@@ -73,12 +73,31 @@ window.addEventListener('load', () => {
         }
     });
 
+    function dataURItoBlob(dataURI, type) {
+        // convert base64 to raw binary data held in a string
+        var byteString = atob(dataURI.split(',')[1]);
+
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+
+        // write the bytes of the string to an ArrayBuffer
+        var ab = new ArrayBuffer(byteString.length);
+        var ia = new Uint8Array(ab);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+
+        // write the ArrayBuffer to a blob, and you're done
+        var bb = new Blob([ab], { type: type });
+        return bb;
+    }
+
     let form = document.querySelector('#pushData');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         let country = document.querySelector('#country').value;
         let countryFlagUrl = (country+".gif").toLowerCase();
-        let photoUrl = canvas.toDataURL("image/png");
+        let photoURL = canvas.toDataURL("image/png");
         // let image = new Image();
         // image.src = '/assets/img/flags/' + countryName + '.gif';
         // image.addEventListener('load', (e) => {
@@ -86,15 +105,17 @@ window.addEventListener('load', () => {
         //     let photoUrl = canvas.toDataURL("image/png");
         //     console.log(photoUrl);
         // });
-        alert(countryFlagUrl);
-        var storageRef = firebase.storage().ref();
-        var imageRef = storageRef.child('images');
+        var image = dataURItoBlob(photoURL, 'image/png');
+        console.log(image);
+        // var storageRef = firebase.storage().ref();
+        // var imageRef = storageRef.child('images');
 
-        storageRef.getDownloadURL().then(function (url) {
-            imageRef.child("image").set(url);
-        });
+        // storageRef.getDownloadURL().then(function (url) {
+        //     imageRef.child("image").set(url);
+        // });
 
-        storageRef.putString(photoUrl, 'base64').then(function (snapshot) {
-            console.log('Uploaded a base64 string!');
-        });
+        // storageRef.putString(photoUrl, 'base64').then(function (snapshot) {
+        //     console.log('Uploaded a base64 string!');
+        // });
+    });
 });
