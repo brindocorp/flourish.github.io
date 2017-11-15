@@ -73,11 +73,11 @@ window.addEventListener('load', () => {
         }
     });
 
-    function savePhoto(canvas, id) {
+    function savePhoto(canvas, id, country) {
         canvas.toBlob(blob => {
             var storage = firebase.app().storage().ref();
             var name = id + "/" + (new Date()).getTime() + ".png";
-            var f = storage.child("drawings/" + name);
+            var f = storage.child("photos/" + name);
             var task = f.put(blob);
             task.on('state_changed', function (snapshot) {
             }, function (error) {
@@ -97,6 +97,6 @@ window.addEventListener('load', () => {
         let countryFlagUrl = (country+".gif").toLowerCase();
         let photoUrl = canvas.toDataURL("image/png");
         alert(countryFlagUrl);
-        savePhoto(canvas, 'images');
+        savePhoto(canvas, 'images', country);
     });
 });
