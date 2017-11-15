@@ -12,6 +12,7 @@
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script> -->
 	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -46,6 +47,9 @@
 		<div class="continueModal" id="continueModal">
 			<div class="modalArea">
 				<button class="btn-close-modal" id="closeModal"><i class="fa fa-times"></i></button>
+				<div id="myProgress">
+					<div id="myBar"></div>
+				</div>
 				<form method="POST" id="pushData">
 					<div class="inputGroup">
 						<select id="country" class="countries">

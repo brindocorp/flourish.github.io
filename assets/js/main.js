@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
             continueModal.style.display = 'block';
         }
     }
-
+    
     // Put video listeners into place
     if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
@@ -104,10 +104,54 @@ window.addEventListener('load', () => {
         let country = document.querySelector('#country').value;
         let countryFlagUrl = (country+".gif").toLowerCase();
         let photoUrl = canvas.toDataURL("image/png");
-        alert(countryFlagUrl);
+        // alert(countryFlagUrl);
         savePhoto(canvas, 'images', country);
+
+        if(country.length <= 0) {
+            swal({
+                title: "Error",
+                text: "Please select your country!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            })
+        } else {
+            let start = 0;
+            let end = 13;
+            let percent = 0;
+            let bar = document.querySelector('#myBar');
+
+            setInterval(function () {
+                if (start < end) {
+                    start++;
+                    if (start == end) {
+                        console.log("End");
+                        percent = 100;
+                        console.log(percent);
+                        bar.style.width = percent+"%";
+                        continueModal.style.display = 'none';
+                        swal("Success", "Photo successfully pushed", "success").then((value) => {
+                            window.location.assign('/');
+                        });
+                    } else {
+                        percent = (start / end) * 100;
+                        console.log("Not End " + start);
+                        console.log("Increased by " + percent + "%");
+                        bar.style.width = percent + "%";
+                    }
+                }
+            }, 1000);
+        }
     });
 
     var closeBtn = document.querySelector('#closeModal');
     closeBtn.addEventListener('click', modalDisplay);
+
+    var swalBtn = document.querySelector('.swal-button--confirm');
+    if(swalBtn) {
+        swalBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            alert("Good");
+        });
+    }
 });

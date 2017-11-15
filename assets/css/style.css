@@ -247,3 +247,20 @@ button.btn-close-modal {
 	outline: none;
 	font-size: 1.1em;
 }
+
+#myProgress {
+    width: 100%;
+	background-color: #ccc;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+#myBar {
+    width: 0%;
+    height: 20px;
+	background-color: #4169E1;
+	border: 1px solid #4169E1;
+	border-radius: 6px;
+	box-sizing: border-box;
+}
