@@ -127,7 +127,7 @@ window.addEventListener('load', () => {
                     if (start == end) {
                         console.log("End");
                         percent = 100;
-                        console.log(percent);
+                        console.log("Increased by "+percent+"%");
                         bar.style.width = percent+"%";
                         continueModal.style.display = 'none';
                         swal("Success", "Photo successfully pushed", "success").then((value) => {
@@ -135,9 +135,9 @@ window.addEventListener('load', () => {
                         });
                     } else {
                         percent = (start / end) * 100;
-                        console.log("Not End " + start);
-                        console.log("Increased by " + percent + "%");
+                        console.log(percent);
                         bar.style.width = percent + "%";
+                        console.log("Not End " + start);
                     }
                 }
             }, 1000);
