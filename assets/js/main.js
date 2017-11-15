@@ -7,8 +7,8 @@ window.addEventListener('load', () => {
     video.width = window.innerWidth;
     video.height = window.innerHeight;
 
-    canvas.width = video.width;
-    canvas.height = video.height;
+    // canvas.width = video.width;
+    // canvas.height = video.height;
 
     let cameraArea = document.getElementById('cameraArea');
     let capturedArea = document.getElementById('capturedArea');
@@ -53,18 +53,10 @@ window.addEventListener('load', () => {
 
     captureBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        context.drawImage(video, 0, 0, video.width, video.height);
         cameraArea.style.display = 'none';
         capturedArea.style.display = 'block';
     });
-
-    // let lists = document.querySelectorAll('ul li');
-    // for(var pos=0; pos<lists.length; pos++) {
-    //     lists[pos].addEventListener('click', (e) => {
-    //         var id = e.target.getAttribute('id');
-    //         console.log(id);
-    //     });
-    // }
 
     let usePhoto = document.querySelector('#continue');
     usePhoto.addEventListener('click', modalDisplay);

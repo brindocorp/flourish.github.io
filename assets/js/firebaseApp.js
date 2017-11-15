@@ -10,3 +10,16 @@ var config = {
 };
 
 firebase.initializeApp(config);
+
+// var userRef = storage.push();
+                // console.log('my new shiny id is ' + userRef.key());
+                // var userRef = usersRef.push({
+                //     photo: name,
+                //     photo_url: url,
+                //     country: country,
+                // });
+                // if(userRef) {
+                //     console.log("Done");
+                // } else {
+                //     console.log("Not Done");
+                // }
